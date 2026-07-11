@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>バネ型数計算</title>
+
+<style>
+body{
+    font-family:sans-serif;
+    background:#f5f5f5;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:420px;
+    margin:auto;
+    background:#fff;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+h2{
+    text-align:center;
+}
+
+input{
+    width:100%;
+    font-size:28px;
+    padding:10px;
+    margin:15px 0;
+    box-sizing:border-box;
+}
+
+.result{
+    margin-top:20px;
+    font-size:22px;
+    line-height:1.8;
+}
+
+.ok{
+    color:green;
+    font-weight:bold;
+}
+
+.ng{
+    color:red;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>バネ型数計算</h2>
+
+<input
+type="number"
+id="spring"
+placeholder="バネ数を入力"
+oninput="calc()">
+
+<div class="result" id="result">
+
+バネ数を入力してください
+
+</div>
+
+</div>
+
+<script>
+
+function calc(){
+
+let n=parseInt(document.getElementById("spring").value);
+
+if(!n){
+document.getElementById("result").innerHTML="バネ数を入力してください";
+return;
+}
+
+let type4=Math.ceil(n/48);
+let type3=Math.ceil(n/36);
+
+let remain4=85-type4;
+let remain3=85-type3;
+
+document.getElementById("result").innerHTML=`
+
+<b>4回加工</b><br>
+必要型数：${type4}型<br>
+${type4<=85?'<span class="ok">〇 OK</span>':'<span class="ng">× NG</span>'}<br>
+残り：${remain4}型
+
+<hr>
+
+<b>3回加工</b><br>
+必要型数：${type3}型<br>
+${type3<=85?'<span class="ok">〇 OK</span>':'<span class="ng">× NG</span>'}<br>
+残り：${remain3}型
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>
